@@ -3,10 +3,10 @@ const router = express.Router();
 const MemberController = require("../controllers/member.controller");
 
 // Lấy danh sách tất cả thành viên
-router.get("/members", MemberController.get_list);
+router.get("/members", MemberController.get_all_members);
 
 // Tạo mới thành viên
-router.post("/members", MemberController.create);
+router.post("/members", MemberController.create_member);
 
 // Lấy thông tin của một thành viên cụ thể
 router.get("/members/:id", MemberController.get_member);
