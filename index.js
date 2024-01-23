@@ -4,9 +4,10 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const db = require("./src/common/connectMG");
 
-// const tranpointRoutes = require("./src/routers/tranpoint.router");
-// const transactionHistoryPointRoutes = require("./src/routers/transactionHistoryPoint.router");
+const tranpointRoutes = require("./src/routers/tranPoint.router");
+const transactionHistoryPointRoutes = require("./src/routers/transactionHistoryPoint.router");
 // const clubRoutes = require("./src/routers/club.router");
 // const clubMemberRoutes = require("./src/routers/clubMember.router");
 // const clubMemSlotRoutes = require("./src/routers/clubMemSlot.router");
@@ -35,9 +36,8 @@ app.use(
 
 //Import api
 app.use("/api", memberRoutes);
-// app.use("/api", tranpointRoutes);
-// app.use("/api", tranpointRoutes);
-// app.use("/api", transactionHistoryPointRoutes);
+app.use("/api", transactionHistoryPointRoutes);
+app.use("/api", tranpointRoutes);
 // app.use("/api", clubRoutes);
 // app.use("/api", clubMemberRoutes);
 // app.use("/api", clubMemSlotRoutes);
