@@ -8,8 +8,8 @@ const db = require("./src/common/connectMG");
 
 const tranpointRoutes = require("./src/routers/tranPoint.router");
 const transactionHistoryPointRoutes = require("./src/routers/transactionHistoryPoint.router");
-// const clubRoutes = require("./src/routers/club.router");
-// const clubMemberRoutes = require("./src/routers/clubMember.router");
+const clubRoutes = require("./src/routers/club.router");
+const clubMemberRoutes = require("./src/routers/clubMember.router");
 // const clubMemSlotRoutes = require("./src/routers/clubMemSlot.router");
 // const slotRoutes = require("./src/routers/slot.router");
 
@@ -38,8 +38,8 @@ app.use(
 app.use("/api", memberRoutes);
 app.use("/api", transactionHistoryPointRoutes);
 app.use("/api", tranpointRoutes);
-// app.use("/api", clubRoutes);
-// app.use("/api", clubMemberRoutes);
+app.use("/api", clubRoutes);
+app.use("/api", clubMemberRoutes);
 // app.use("/api", clubMemSlotRoutes);
 // app.use("/api", slotRoutes);
 
