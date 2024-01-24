@@ -21,6 +21,9 @@ const memberRoutes = require('./src/routers/member.router');
 // const yardRoutes = require("./src/routers/yard.router");
 // const authRoutes = require("./src/routers/auth.router");
 // const authMiddleware = require("./src/common/authMiddleware");
+const yardRoutes = require('./src/routers/yard.router');
+const sportRoutes = require('./src/routers/sport.router');
+const walletRoutes = require('./src/routers/wallet.router')
 
 const PORT = process.env.PORT || 3000;
 
@@ -46,8 +49,9 @@ app.use('/api', tranpointRoutes);
 // app.use("/api", walletRoutes);
 app.use('/api', areaRoutes);
 app.use('/api', buildingRoutes);
-//app.use("/api", sportRoutes);
-// app.use("/api", yardRoutes);
+app.use("/api", sportRoutes);
+app.use("/api", yardRoutes);
+app.use("/api", walletRoutes);
 
 // app.use("/api", authMiddleware.authenticateToken, memberRoutes);
 // app.use("/api", authMiddleware.authenticateToken, walletRoutes);
