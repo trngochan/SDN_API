@@ -1,32 +1,38 @@
 const mongoose = require("mongoose");
 const path = require("path");
 
-// Đường dẫn
 const modelsDir = path.join(__dirname, "../src/models");
-const slot = require(path.join(modelsDir, "slot.model"));
+const Slot = require(path.join(modelsDir, "slot.model"));
 
-// Kết nối đến MongoDB
 require(path.join(__dirname, "../src/common/connectMG"));
 
-const slotData = [
-    { name: 'Slot 1', startTime: new Date(), endTime: new Date(), memberPostId: 1, currentMember: 'Member A', requiredMember: 'Member B', yardId: 101, yardName: 'Yard A', status: true, dateTime: new Date() },
-    { name: 'Slot 2', startTime: new Date(), endTime: new Date(), memberPostId: 2, currentMember: 'Member C', requiredMember: 'Member D', yardId: 102, yardName: 'Yard B', status: false, dateTime: new Date() },
+const slotsData = [
+  {
+    clubMemberId: new mongoose.Types.ObjectId(),
+    slotId: new mongoose.Types.ObjectId(),
+    dateTime: new Date("2024-01-01T10:00:00.000Z"),
+    transactionPoint: 10,
+    status: true,
+  },
+  {
+    clubMemberId: new mongoose.Types.ObjectId(),
+    slotId: new mongoose.Types.ObjectId(),
+    dateTime: new Date("2024-01-02T14:30:00.000Z"),
+    transactionPoint: 8,
+    status: false,
+  },
+  // Add more slots as needed
 ];
 
-async function initSlot() {
-    try {
-        // Xóa tất cả dữ liệu hiện tại trong bảng
-        await slot.deleteMany();
-
-        // Thêm dữ liệu mẫu
-        await slot.insertMany(slotData);
-
-        console.log('Dữ liệu đã được khởi tạo thành công.');
-    } catch (error) {
-        console.error('Lỗi khi khởi tạo dữ liệu:', error);
-    } finally {
-        mongoose.disconnect();
-    }
+async function initSlotsData() {
+  try {
+    await Slot.insertMany(slotsData);
+    console.log("Slots data initialized successfully");
+  } catch (error) {
+    console.error("Error initializing slots data:", error.message);
+  } finally {
+    mongoose.disconnect();
+  }
 }
 
-initSlot();
+initSlotsData();
