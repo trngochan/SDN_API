@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const clubMemSlotSchema = new mongoose.Schema({
-    clubMemberId: { type: Number, required: true },
-    slotId: { type: Number, required: true },
-    dateTime: Date,
-    transactionPoint: { type: Number, required: true },
-    status: { type: Boolean, required: true }
+const ClubMemberSlotSchema = new mongoose.Schema({
+  clubMemberId: { type: mongoose.Schema.Types.ObjectId, required: true },
+  slotId: { type: mongoose.Schema.Types.ObjectId, required: true },
+  dateTime: { type: Date },
+  transactionPoint: { type: Number },
+  status: { type: Boolean },
 });
 
-const ClubMemSlot = mongoose.model('ClubMemSlot', clubMemSlotSchema);
+const ClubMemberSlot = mongoose.model("ClubMemberSlot", ClubMemberSlotSchema);
 
-module.exports = ClubMemSlot;
+module.exports = ClubMemberSlot;

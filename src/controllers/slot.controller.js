@@ -1,45 +1,31 @@
-const SlotService = require('../services/slotService');
-const Slot = require('../models/Slot');
+const SlotService = require("../services/slot.service");
 
-class SlotController {
-    async getAllSlots(req, res) {
-        try {
-            const slots = await SlotService.getAllSlots();
-            res.json(slots);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
+exports.get_all_slots = async (req, res) => {
+  const result = await SlotService.getAllSlots();
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-    async createSlot(req, res) {
-        try {
-            const newSlot = new Slot(req.body);
-            const savedSlot = await SlotService.createSlot(newSlot);
-            res.json(savedSlot);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
+exports.get_slot = async (req, res) => {
+  const slotId = req.params.id;
+  const result = await SlotService.getSlotById(slotId);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-    async updateSlot(req, res) {
-        try {
-            const slotId = req.params.id;
-            const updatedSlot = await Slot.findByIdAndUpdate(slotId, req.body, { new: true });
-            res.json(updatedSlot);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
+exports.create_slot = async (req, res) => {
+  const newSlot = req.body;
+  const result = await SlotService.createSlot(newSlot);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-    async deleteSlot(req, res) {
-        try {
-            const slotId = req.params.id;
-            const deletedSlot = await Slot.findByIdAndRemove(slotId);
-            res.json(deletedSlot);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
-}
+exports.update_slot = async (req, res) => {
+  const slotId = req.params.id;
+  const updatedSlot = req.body;
+  const result = await SlotService.updateSlot(slotId, updatedSlot);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-module.exports = new SlotController();
+exports.delete_slot = async (req, res) => {
+  const slotId = req.params.id;
+  const result = await SlotService.deleteSlot(slotId);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};

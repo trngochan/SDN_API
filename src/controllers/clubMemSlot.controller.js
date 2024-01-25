@@ -1,55 +1,31 @@
-const ClubMemSlotService = require('../services/clubMemSlotService');
-const ClubMemSlot = require('../models/ClubMemSlot');
+const ClubMemSlotService = require("../services/clubMemSlot.service");
 
-class ClubMemSlotController {
-    async getAllClubMemSlots(req, res) {
-        try {
-            const clubMemSlots = await ClubMemSlotService.getAllClubMemSlots();
-            res.json(clubMemSlots);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
+exports.get_all_club_mem_slots = async (req, res) => {
+  const result = await ClubMemSlotService.getAllClubMemberSlots();
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-    async getClubMemSlotById(req, res) {
-        const id = req.params.id;
-        try {
-            const clubMemSlot = await ClubMemSlotService.getClubMemSlotById(id);
-            res.json(clubMemSlot);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
+exports.get_club_mem_slot = async (req, res) => {
+  const clubMemSlotId = req.params.id;
+  const result = await ClubMemSlotService.getClubMemberSlotById(clubMemSlotId);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-    async createClubMemSlot(req, res) {
-        try {
-            const newClubMemSlot = new ClubMemSlot(req.body);
-            const savedClubMemSlot = await ClubMemSlotService.createClubMemSlot(newClubMemSlot);
-            res.json(savedClubMemSlot);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
+exports.create_club_mem_slot = async (req, res) => {
+  const newClubMemSlot = req.body;
+  const result = await ClubMemSlotService.createClubMemberSlot(newClubMemSlot);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-    async updateClubMemSlot(req, res) {
-        const id = req.params.id;
-        try {
-            const updatedClubMemSlot = await ClubMemSlotService.updateClubMemSlot(id, req.body);
-            res.json(updatedClubMemSlot);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
+exports.update_club_mem_slot = async (req, res) => {
+  const clubMemSlotId = req.params.id;
+  const updatedClubMemSlot = req.body;
+  const result = await ClubMemSlotService.updateClubMemberSlot(clubMemSlotId, updatedClubMemSlot);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
 
-    async deleteClubMemSlot(req, res) {
-        const id = req.params.id;
-        try {
-            const deletedClubMemSlot = await ClubMemSlotService.deleteClubMemSlot(id);
-            res.json(deletedClubMemSlot);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
-}
-
-module.exports = new ClubMemSlotController();
+exports.delete_club_mem_slot = async (req, res) => {
+  const clubMemSlotId = req.params.id;
+  const result = await ClubMemSlotService.deleteClubMemberSlot(clubMemSlotId);
+  res.status(result.status === "success" ? 200 : 404).json(result);
+};
