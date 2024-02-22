@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const transactionHistoryPointSchema = new mongoose.Schema({
-  walletId: { type: mongoose.Schema.Types.ObjectId, required: true },
-  clubMemSlotId: { type: mongoose.Schema.Types.ObjectId, required: true },
+  walletId: { type: mongoose.Schema.Types.ObjectId },
+  clubMemSlotId: { type: mongoose.Schema.Types.ObjectId },
   initialPoint: { type: Number, required: true },
-  transactionPointId: { type: mongoose.Schema.Types.ObjectId, required: true },
+  transactionPointId: { type: mongoose.Schema.Types.ObjectId },
   transactionPoint: { type: Number, required: true },
   dateTime: { type: Date, default: Date.now },
   status: { type: Boolean, default: true },

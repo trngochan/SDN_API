@@ -31,11 +31,12 @@ exports.getTransactionhistorypointById = async (TransactionHistoryPointId) => {
 
 exports.createTransactionhistorypoint = async (newTransactionHistoryPoint) => {
   try {
-    const TransactionHistoryPoint = await TransactionHistoryPoint.create(
+    const result = await TransactionHistoryPoint.create(
       newTransactionHistoryPoint
     );
-    return { status: "success", result: TransactionHistoryPoint };
+    return { status: "success", result: result };
   } catch (error) {
+    console.log(error);
     return {
       status: "error",
       message: "Error creating TransactionHistoryPoint",
