@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 // Define Area Schema
@@ -8,5 +8,5 @@ const areaSchema = new Schema({
   status: { type: Boolean },
   dateTime: { type: Date },
 });
-const Area = mongoose.model('Area', areaSchema);
+const Area = mongoose.model("Area", areaSchema);
 module.exports = Area;
