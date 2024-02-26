@@ -20,7 +20,11 @@ exports.create_club_mem_slot = async (req, res) => {
 exports.update_club_mem_slot = async (req, res) => {
   const clubMemSlotId = req.params.id;
   const updatedClubMemSlot = req.body;
-  const result = await ClubMemSlotService.updateClubMemberSlot(clubMemSlotId, updatedClubMemSlot);
+  console.log(updatedClubMemSlot);
+  const result = await ClubMemSlotService.updateClubMemberSlot(
+    clubMemSlotId,
+    updatedClubMemSlot
+  );
   res.status(result.status === "success" ? 200 : 404).json(result);
 };
 

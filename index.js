@@ -39,11 +39,10 @@ app.use(
 );
 
 //Import api
-app.use("/api", memberRoutes);
-app.use("/api", transactionHistoryPointRoutes);
-app.use("/api", authMiddleware.authenticateToken, tranpointRoutes);
-app.use("/api", clubRoutes);
-app.use("/api", clubMemberRoutes);
+// app.use("/api", memberRoutes);
+// app.use("/api", transactionHistoryPointRoutes);
+// app.use("/api", clubRoutes);
+// app.use("/api", clubMemberRoutes);
 app.use("/api", clubMemSlotRoutes);
 app.use("/api", slotRoutes);
 
@@ -57,7 +56,8 @@ app.use("/api", yardRoutes);
 app.use("/api", walletRoutes);
 app.use("/api", authRoutes);
 
-app.use("/api", authMiddleware.authenticateToken, memberRoutes);
+app.use("/api", memberRoutes);
+app.use("/api", authMiddleware.authenticateToken, tranpointRoutes);
 app.use("/api", authMiddleware.authenticateToken, walletRoutes);
 app.use("/api", authMiddleware.authenticateToken, areaRoutes);
 app.use("/api", authMiddleware.authenticateToken, buildingRoutes);
